@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import { MarkdownContent } from "@/components/MarkdownContent";
 import type { StreamPeerReview } from "@/hooks/useRunStream";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/ui/tabs";
 
@@ -33,8 +33,8 @@ export function PeerReviewTabs({ peerReviews, reportReviews }: PeerReviewTabsPro
         </TabsList>
         {reviews.map((r) => (
           <TabsContent key={r.reviewer_role} value={r.reviewer_role}>
-            <div className="prose prose-sm max-w-none dark:prose-invert font-mono text-sm border border-border p-4">
-              <ReactMarkdown>{r.content || "…"}</ReactMarkdown>
+            <div className="border border-border p-4">
+              <MarkdownContent>{r.content || "…"}</MarkdownContent>
             </div>
           </TabsContent>
         ))}

@@ -14,6 +14,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from quorum import __version__
 from quorum.api.events import (
@@ -316,11 +317,26 @@ async def view_cassette(file: UploadFile = File(...)):
         tmp_path.unlink(missing_ok=True)
 
 
+class SPAStaticFiles(StaticFiles):
+    """StaticFiles with SPA fallback: unknown routes serve index.html."""
+
+    async def get_response(self, path: str, scope):
+        try:
+            return await super().get_response(path, scope)
+        except StarletteHTTPException as exc:
+            if exc.status_code != 404 or not self.html:
+                raise
+            # Missing static assets (e.g. *.js) should stay 404.
+            if "." in path.rsplit("/", 1)[-1]:
+                raise
+            return await super().get_response("index.html", scope)
+
+
 def mount_spa(web_dir: Path | None = None) -> None:
     """Mount built SPA at root (call after all API routes are registered)."""
     directory = web_dir or Path(__file__).parent.parent / "web"
     if directory.exists() and (directory / "index.html").exists():
-        app.mount("/", StaticFiles(directory=str(directory), html=True), name="spa")
+        app.mount("/", SPAStaticFiles(directory=str(directory), html=True), name="spa")
 
 
 mount_spa()
