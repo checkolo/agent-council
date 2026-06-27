@@ -4,9 +4,8 @@ import asyncio
 import json
 import os
 import tempfile
-from pathlib import Path
-
 from dataclasses import replace
+from pathlib import Path
 
 from fastapi import BackgroundTasks, FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -233,7 +232,7 @@ async def _execute_run(run_id: str, req: CreateRunRequest) -> None:
 async def create_run(req: CreateRunRequest, background_tasks: BackgroundTasks):
     storage = get_storage()
     try:
-        template = _apply_role_subset(load_template(req.template), req.roles)
+        _apply_role_subset(load_template(req.template), req.roles)
     except FileNotFoundError:
         raise HTTPException(404, f"Template not found: {req.template}")
     run_id = storage.create_run(req.template, req.input, req.mode, req.max_cost)
