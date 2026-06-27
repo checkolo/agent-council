@@ -1,0 +1,49 @@
+- id: auth-timing-attack
+  question: "Review this auth change for timing attack vulnerabilities"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: api-design
+  question: "Review this REST API design for scalability concerns"
+  template: architecture-review
+  fixture: tests/fixtures/sample.diff
+
+- id: error-handling
+  question: "Review error handling patterns in this diff"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: test-coverage
+  question: "What test cases are missing for this change?"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: security-secrets
+  question: "Are there any secrets or credentials exposed?"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: performance-hotpath
+  question: "Identify performance bottlenecks in this code"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: module-boundaries
+  question: "Evaluate module coupling and boundaries"
+  template: architecture-review
+  fixture: tests/fixtures/sample.diff
+
+- id: concurrency
+  question: "Review thread safety and concurrency issues"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: naming-clarity
+  question: "Assess naming and readability"
+  template: pr-review
+  fixture: tests/fixtures/sample.diff
+
+- id: migration-risk
+  question: "What are the risks of deploying this change?"
+  template: architecture-review
+  fixture: tests/fixtures/sample.diff

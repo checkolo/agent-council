@@ -1,0 +1,9 @@
+{
+  "content": "Hello! How can I help you today?",
+  "model": "openai/gpt-4o-mini",
+  "usage": {
+    "prompt_tokens": 5,
+    "completion_tokens": 8
+  },
+  "cost_usd": 1e-05
+}

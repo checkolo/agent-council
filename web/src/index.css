@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  --color-card: #ffffff;
+  --color-card-foreground: #171717;
+  --color-accent: #fafafa;
+  --color-accent-foreground: #171717;
+  --color-border: #e5e5e5;
+  --color-ring: #171717;
+  --color-primary: #171717;
+  --color-primary-foreground: #ffffff;
+  --color-destructive: oklch(42% 0.15 27);
+  --color-destructive-foreground: #ffffff;
+
+  --color-success: #047857;
+  --color-success-foreground: #ecfdf5;
+  --color-warning: #b45309;
+  --color-warning-foreground: #fffbeb;
+  --color-info: #1d4ed8;
+  --color-info-foreground: #eff6ff;
+
+  --radius: 0;
+}
+
+.dark {
+  --color-background: oklch(14.5% 0.025 264);
+  --color-foreground: oklch(98% 0.01 264);
+  --color-muted: oklch(22% 0.02 264);
+  --color-muted-foreground: oklch(65% 0.02 264);
+  --color-card: oklch(14.5% 0.025 264);
+  --color-card-foreground: oklch(98% 0.01 264);
+  --color-accent: oklch(22% 0.02 264);
+  --color-accent-foreground: oklch(98% 0.01 264);
+  --color-border: oklch(22% 0.02 264);
+  --color-ring: oklch(83% 0.02 264);
+  --color-primary: oklch(98% 0.01 264);
+  --color-primary-foreground: oklch(14.5% 0.025 264);
+
+  --color-success: oklch(72% 0.15 162);
+  --color-success-foreground: oklch(18% 0.04 162);
+  --color-warning: oklch(78% 0.15 80);
+  --color-warning-foreground: oklch(20% 0.04 80);
+  --color-info: oklch(72% 0.15 250);
+  --color-info-foreground: oklch(18% 0.04 250);
+}
+
+@layer base {
+  *, ::before, ::after { border-color: var(--color-border); }
+  html {
+    font-family: var(--font-sans);
+    font-feature-settings: "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { background-color: var(--color-background); color: var(--color-foreground); }
+  code, kbd, pre, samp { font-family: var(--font-mono); }
+  .tabular { font-variant-numeric: tabular-nums; }
+  ::selection { background-color: var(--color-foreground); color: var(--color-background); }
+}
+
+@layer utilities {
+  .hairline-b { border-bottom-width: 1px; border-bottom-color: var(--color-border); }
+  .hairline-t { border-top-width: 1px; border-top-color: var(--color-border); }
+  .text-balance { text-wrap: balance; }
+}

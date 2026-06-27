@@ -1,0 +1,29 @@
+name: pr-review
+description: Review a pull request diff with architecture, security, performance, and QA lenses.
+roles:
+  - architect
+  - security
+  - performance
+  - qa
+judge_model: anthropic/claude-sonnet-4
+mode: fast
+max_cost_usd: 0.50
+default_outcome: review-report
+outcomes:
+  - id: review-report
+    label: Review report
+    description: Consensus, disagreements, risks, and recommendation
+    instruction: |
+      Produce a standard code review DecisionReport with consensus, disagreements, risks, unknowns, recommendation, and attribution.
+  - id: implementation-plan
+    label: Implementation plan
+    description: Actionable plan even when the panel disagrees on approach
+    instruction: |
+      Your primary deliverable MUST be a concrete implementation plan: numbered steps, file/module targets, and sequencing.
+      Panel disagreements should be noted briefly but must NOT block the plan — pick a direction and deliver the full plan.
+  - id: merge-verdict
+    label: Merge verdict
+    description: Clear approve / request-changes / block decision with rationale
+    instruction: |
+      Your primary deliverable MUST be an explicit merge verdict (APPROVE, REQUEST CHANGES, or BLOCK) with a concise rationale and required follow-ups.
+      State the verdict plainly at the top of the deliverable section.

@@ -1,0 +1,30 @@
+name: song-writer
+description: Collaboratively write a song from a brief — lyric, melody, arrangement, and audience perspectives.
+roles:
+  - lyricist
+  - melody
+  - producer
+  - critic
+judge_model: anthropic/claude-sonnet-4
+mode: fast
+max_cost_usd: 0.50
+default_outcome: full-song
+outcomes:
+  - id: full-song
+    label: Full song
+    description: Complete song with chorus and 2 verses
+    instruction: |
+      Your primary deliverable MUST be a complete song: title, 2 verses, a chorus (clearly marked and repeated at least once), and an optional bridge.
+      Include chord or key suggestions if helpful. Panel disagreements about style or wording must NOT prevent delivery — synthesize the strongest ideas and produce the song.
+  - id: lyrics-only
+    label: Lyrics only
+    description: Verse and chorus lyrics without arrangement notes
+    instruction: |
+      Your primary deliverable MUST be finished lyrics: title, 2 verses, and a chorus. No arrangement or production notes.
+      Resolve creative disagreements by choosing the most compelling lines and produce the final lyric sheet.
+  - id: hook-demo
+    label: Hook demo
+    description: Chorus + one verse as a compact demo
+    instruction: |
+      Your primary deliverable MUST be a compact hook demo: title, one verse, and a chorus with brief notes on melody or rhythm.
+      Synthesize panel input into one cohesive demo regardless of disagreements.

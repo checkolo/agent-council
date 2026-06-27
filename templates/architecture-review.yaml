@@ -1,0 +1,29 @@
+name: architecture-review
+description: Review system design, module boundaries, and evolution paths.
+roles:
+  - architect
+  - security
+  - performance
+  - qa
+judge_model: anthropic/claude-sonnet-4
+mode: thorough
+max_cost_usd: 1.00
+default_outcome: review-report
+outcomes:
+  - id: review-report
+    label: Architecture review
+    description: Consensus, disagreements, risks, and recommendation
+    instruction: |
+      Produce a standard architecture review DecisionReport with consensus, disagreements, risks, unknowns, recommendation, and attribution.
+  - id: implementation-plan
+    label: Implementation plan
+    description: Phased plan regardless of panel disagreements
+    instruction: |
+      Your primary deliverable MUST be a phased implementation plan with milestones, module boundaries, and migration steps.
+      Disagreements may be summarized but must NOT prevent delivering the complete plan.
+  - id: adr-set
+    label: ADR set
+    description: Architecture Decision Records for key choices
+    instruction: |
+      Your primary deliverable MUST be a set of Architecture Decision Records (ADRs) covering the major design choices raised by the panel.
+      Each ADR needs context, decision, and consequences. Deliver all ADRs even if the panel split on options.

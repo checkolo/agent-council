@@ -1,0 +1,17 @@
+diff --git a/src/auth.py b/src/auth.py
+index abc123..def456 100644
+--- a/src/auth.py
++++ b/src/auth.py
+@@ -10,8 +10,12 @@ import hashlib
+ 
+ def verify_token(token: str) -> bool:
+-    return token == os.environ.get("API_TOKEN")
++    expected = os.environ.get("API_TOKEN")
++    if not expected:
++        return False
++    return hmac.compare_digest(token, expected)
+ 
+ def hash_password(password: str) -> str:
+-    return hashlib.md5(password.encode()).hexdigest()
++    salt = os.urandom(16)
++    return hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 100000).hex()
