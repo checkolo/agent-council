@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import { MarkdownContent } from "@/components/MarkdownContent";
 import type { StreamMember } from "@/hooks/useRunStream";
 import type { MemberOutput } from "@/lib/api";
 import { MemberTabs } from "@/components/MemberTabs";
@@ -55,8 +55,8 @@ export function LiveMemberTabs({
                   Model: {m.model}
                 </p>
               )}
-              <div className="prose prose-sm max-w-none dark:prose-invert font-mono text-sm border border-border p-4">
-                <ReactMarkdown>{m.content || "…"}</ReactMarkdown>
+              <div className="border border-border p-4">
+                <MarkdownContent>{m.content || "…"}</MarkdownContent>
               </div>
             </TabsContent>
           );

@@ -1,4 +1,5 @@
 import { Scale } from "lucide-react";
+import { MarkdownContent } from "@/components/MarkdownContent";
 import type { DecisionReport } from "@/lib/api";
 import { cn } from "@/lib/cn";
 
@@ -50,7 +51,7 @@ export function JudgeVerdict({
       </div>
       <div className={cn("px-6 py-5", isStreaming && !deliverable && "opacity-90")}>
         {content ? (
-          <div className="text-sm whitespace-pre-wrap leading-relaxed">{content}</div>
+          <MarkdownContent>{content}</MarkdownContent>
         ) : (
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             Awaiting judge synthesis…

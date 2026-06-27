@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -73,4 +74,17 @@
   .hairline-b { border-bottom-width: 1px; border-bottom-color: var(--color-border); }
   .hairline-t { border-top-width: 1px; border-top-color: var(--color-border); }
   .text-balance { text-wrap: balance; }
+
+  .markdown-content {
+    @apply prose prose-sm max-w-none dark:prose-invert;
+    @apply prose-headings:font-sans prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-foreground;
+    @apply prose-p:leading-relaxed prose-li:leading-relaxed prose-p:text-foreground/90;
+    @apply prose-a:text-foreground prose-a:underline prose-a:underline-offset-2;
+    @apply prose-strong:font-semibold prose-strong:text-foreground;
+    @apply prose-code:font-mono prose-code:text-[0.875em] prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:font-mono;
+    @apply prose-blockquote:border-l-foreground prose-blockquote:text-muted-foreground prose-blockquote:not-italic;
+    @apply prose-hr:border-border;
+    @apply prose-th:font-mono prose-th:text-[11px] prose-th:uppercase prose-th:tracking-wider;
+  }
 }

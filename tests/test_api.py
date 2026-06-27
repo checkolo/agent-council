@@ -146,3 +146,15 @@ def test_cassette_view(client):
     assert resp.status_code == 200
     data = resp.json()
     assert data["run_id"] == "demo-auth"
+
+
+def test_spa_client_route_refresh(client):
+    resp = client.get("/runs/example-id")
+    assert resp.status_code == 200
+    assert "text/html" in resp.headers["content-type"]
+    assert "<!doctype html>" in resp.text.lower()
+
+
+def test_spa_missing_asset_stays_404(client):
+    resp = client.get("/assets/does-not-exist.js")
+    assert resp.status_code == 404
